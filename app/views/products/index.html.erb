@@ -1,0 +1,64 @@
+
+<style>
+   .block-heading__item{
+    display: none;
+   }
+</style>
+
+<% if user_signed_in? %>
+  <%= link_to new_product_path, class: "btn btn-add" do %>
+    <i class='fa-solid fa-plus icon'></i> Thêm sản phẩm
+  <% end %>
+<% end %>
+
+  <div class="divice-block__screen">
+      <h3 class="title-product">
+          <i class="fa-solid fa-list"></i>
+          Sản phẩm
+      </h3>
+      <div class="row sTb-gutter">
+          <% @products.each do |product| %>
+            <div class="col PC-2-4 Tb-4 Mb-6">
+              <a href="/products/<%= product.id %>" class="home-product-item">
+                    <% if product.featured_image.attached? %>
+                      <div class="home-product-item__img" style="background-image: url('<%= url_for(product.featured_image) %>')"></div>
+                    <% end %>
+
+                    <h4 class="home-product-item__name"> <%= product.name %> </h4>
+                    <p class="home-product-item__price-current"> <%= product.price %> vnd </p>      
+                    
+                     <div class="home-product-item__action">
+                         <!-- home-product-item__like--liked-->
+                         <span class="home-product-item__like ">
+                             <i class="home-product-item__like-icon-fill fa-solid fa-heart"></i>
+                             <i class="home-product-item__like-icon-empty fa-regular fa-heart"></i>
+                         </span>
+                         <div class="home-product-item__rating">
+                             <i class="home-product-item--gold fa-solid fa-star"></i>
+                             <i class="home-product-item--gold fa-solid fa-star"></i>
+                             <i class="home-product-item--gold fa-solid fa-star"></i>
+                             <i class="home-product-item--gold fa-solid fa-star"></i>
+                             <i class="fa-solid fa-star"></i>
+                         </div>
+                         <span class="home-product-item__sold">88 đã bán</span>
+                     </div>
+                     
+                     <div class="home-product-item__origin">
+                        <span class="home-product-item__brand">FreshFruits</span>
+                        <span class="home-product-item__oirgin-title">NewZeaLand</span>
+                      </div>
+
+                      <div class="home-product-item__favourite">
+                         <i class="fa-solid fa-check"></i>
+                         <span> Yêu Thích</span>
+                      </div>
+
+                      <div class="home-product-item__sale-off">
+                         <span class="home-product-item__sale-off-percent">10%</span>
+                         <span class="home-product-item__sale-off-label">Giảm</span>
+                      </div>      
+              </a>
+            </div>
+          <% end %>     
+      </div>
+  </div>

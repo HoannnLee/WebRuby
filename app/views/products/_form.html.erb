@@ -1,0 +1,104 @@
+
+<div class="container-ad">
+  <div class="row">
+      <div class="col PC-2">
+          <nav class="menu-Admin">
+              <header class="Admin-logo">
+                  <img src="./assets/css/Image/logo.jpg" alt="" class="Admin-logo__img">
+                  <div class="Admin-logo__name">
+                      <a href="" class="Admin-logo__link">FreshFruit</a>
+                  </div>
+              </header>
+            
+              <div class="menu-Admin-flex">
+                  <ul class="menu-Admin__navigation">                                 
+                      <li class="navigation-item Tabs activeTabs active">
+                          <a href="#" class="navigation-item__link ">
+                              <i class="fa-solid fa-gears admin-icon"></i>
+                              Sản phẩm
+                          </a>
+                      </li>                                   
+                      <li class="navigation-item">                                      
+                          
+                          <%= link_to root_path, class: "navigation-item__link" do %>
+                             <i class="fa-solid fa-store admin-icon"></i> Trang chủ
+                          <% end %>
+                      </li>
+                  </ul>
+                  <div class="menu-Admin-flex__logout">                                                      
+                      <% if user_signed_in? %>
+                          <%= button_to destroy_user_session_path, method: :delete, class: "logout-btn" do %>
+                              <i class="fa-solid fa-right-from-bracket icon"></i> Đăng xuất
+                          <% end %>                                          
+                      <% end %>
+                  </div>
+              </div>
+          </nav>
+      </div>
+      
+      <div class="col PC-10">
+          <header class="Welcome-block">
+              <div class="Welcome-block-title">
+                  <h2 class="Welcome-block__heading">Chào mừng đến với trang quản trị</h2>
+                  <p class="Welcome-block__des">Bạn sẽ quản lý sản phẩm ở đây</p>
+              </div>
+            <ul class="dateTime-block">
+              <li class="dateTime-item">
+                <div class="currentTime">00:00:00</div>
+              </li>
+              <li class="dateTime-item">
+                <span class="curent-date"><i class="fa-regular fa-calendar dateTime-item__icon"></i></span>
+                <div class="currentDate"><span class="date-text">00/00/0000</span></div>
+              </li>
+            </ul>
+          </header>
+
+          <main class="Admin-content">
+              <h3 class="Admin-content__heading">Quản lý sản phẩm</h3>
+              <%= form_with model: product, class: "form-update" do |form| %>
+                    <div class="form-update-feild">
+                      <%= form.label :name, "Tên sản phẩm", class: "form-update-label" %>
+                      <%= form.text_field :name, class: "form-update-input" %>
+                    </div>
+                    
+                    <div class="form-update-feild">
+                      <%= form.label :des, "Mô tả ngắn", class: "form-update-label" %>
+                      <%= form.text_field :des, class: "form-update-input" %>
+                    </div>
+            
+                    <div class="form-update-feild">
+                      <%= form.label :price, "Giá", class: "form-update-label" %>
+                      <%= form.text_field :price, class: "form-update-input" %>
+                    </div>
+            
+                    <div class="form-update">
+                      <%= form.label :description, "Mô tả dài" ,class: "form-update-label" ,style: "display: block" %>
+                      <%= form.rich_text_area :description %>
+                    </div>
+            
+                    <div class="form-update-feild">
+                      <%= form.label :featured_image, "Ảnh sản phẩm" , class: "form-update-label" %>
+                      <%= form.file_field :featured_image, accept: "image/*" %>
+                    </div>
+                    
+                    <div class="form-update-feild">
+                      <%= form.label :inventory_count, class: "form-update-label" ,style: "display: block" %>
+                      <%= form.number_field :inventory_count %>
+                    </div>
+                    <div class="btn-block">
+                      <%= form.submit class: "btnn btn-submit" do %>
+                        <i class="fa-solid fa-plus btn-back-icon"></i> Thêm
+                      <% end %>
+
+                      <%= link_to products_path, class: "btnn btn-back" do %>
+                        <i class="fa-solid fa-rotate-left btn-back-icon"></i> Quay lại
+                      <% end %>                   
+                    </div>
+               <% end %>
+          </main>
+      </div>
+    </div>
+    
+  </div>
+</div>
+    

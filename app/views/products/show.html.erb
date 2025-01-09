@@ -1,0 +1,42 @@
+
+<% cache @product do %>
+
+    <div class="product-details">
+         <div class="products-details__container">
+             <div class="products-details__header">
+             <%= link_to "<i class='fa-solid fa-angle-left'></i> Quay lại".html_safe, products_path, class: "products-details__back " %>
+ 
+                 <div class="products-details__like">
+                     <i class="fa-regular fa-heart"></i>
+                 </div>
+             </div>
+ 
+             <div class="product-details__content">             
+                 <%= image_tag @product.featured_image, class: "products-details__image" if @product.featured_image.attached? %>
+                 <div class="products-details__info">
+                     <h2 class="products-details__title"><%= @product.name %></h2>  
+                     <span class="product-details__category"> <%= render "inventory", product: @product %></span>               
+                     <span class="product-details__price"><%= @product.price %> vnd</span>
+                     <span class="product-details__des"><%= @product.des %></span>
+ 
+                    <% if user_signed_in? %>
+                       <div class="products-details__buttons">
+                           <%= link_to edit_product_path(@product), class: "products-details__button btn-edit" do %>
+                              <i class="fa-solid fa-wrench "></i> Sửa
+                           <% end %>
+                       
+                           <%= button_to @product, method: :delete, data: { turbo_confirm: "Bạn có muốn xóa?" }, class: "products-details__button btn-delete" do %>
+                             <i class="fa-solid fa-trash-can "></i> Xóa
+                           <% end %>
+ 
+                       </div>
+                     <% end %>                 
+                 </div>
+             </div>
+         </div> 
+     </div>
+     <div class="products-details__container--des">
+         <h4 class="title-des">Mô tả sản phẩm</h4>
+         <p class="products-details__des-content"><%= @product.description %></p>
+     </div> 
+ <% end %>

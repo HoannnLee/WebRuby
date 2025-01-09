@@ -1,0 +1,12 @@
+<% if product.inventory_count? %>
+  <p class="plant-details__category"><%= product.inventory_count %> sản phẩm trong kho</p>
+<% else %>
+  <p class="out-of-stock">Hết hàng</p>
+  <p class="notify-me">Gửi email cho tôi khi có hàng</p>
+
+  <%= form_with model: [product, Subscriber.new], html: { class: "stock-form" } do |form| %>
+    <%= form.email_field :email, placeholder: "vd: google@gmail.com", required: true, class: "email-input" %>
+    <%= form.submit "Gửi", class: "submit-button" %>
+  <% end %>
+<% end %>
+

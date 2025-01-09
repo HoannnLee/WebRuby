@@ -82,6 +82,7 @@ test:
 production:
   primary: &primary_production
     <<: *default
+    url: <%= ENV['DATABASE_URL'] %>
     database: blog_fruit_production
     username: blog_fruit
     password: <%= ENV["BLOG_FRUIT_DATABASE_PASSWORD"] %>

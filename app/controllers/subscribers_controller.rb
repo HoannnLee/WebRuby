@@ -1,5 +1,4 @@
 class SubscribersController < ApplicationController
-    before_action :set_product
   
     def create
       @product.subscribers.where(subscriber_params).first_or_create
